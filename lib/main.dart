@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = GeneratorPage();
         break;
       case 1:
-        page = Placeholder();
+        page = FavoritedPage();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -107,7 +107,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-
 class GeneratorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -144,6 +143,29 @@ class GeneratorPage extends StatelessWidget {
                 },
                 child: Text('Next'),
               ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FavoritedPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+    var favoritedNames = appState.favorites;
+
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (var name in favoritedNames) 
+                Text(name.toString())
             ],
           ),
         ],
