@@ -42,6 +42,11 @@ class MyAppState extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void clearFavorites() {
+    favorites.clear();
+    notifyListeners();
+  }
 }
 
 class MyHomePage extends StatefulWidget {
@@ -174,6 +179,15 @@ class FavoritedPage extends StatelessWidget {
             leading: Icon(Icons.favorite),
             title: Text(pair.asLowerCase),
           ),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: ElevatedButton(
+            onPressed: () {
+              appState.clearFavorites();
+            }, 
+            child: Text("Clear all favorites"),
+          ),
+        ),
       ],
     );
   }
